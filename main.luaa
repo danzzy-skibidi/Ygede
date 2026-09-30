@@ -1,0 +1,93 @@
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+local Gui = Instance.new("ScreenGui")
+Gui.Name = "DanzzyMenu"
+Gui.ResetOnSpawn = false
+Gui.Parent = PlayerGui
+
+local Main = Instance.new("Frame")
+Main.Parent = Gui
+Main.Size = UDim2.fromOffset(360, 300)
+Main.Position = UDim2.new(0.5, -180, 0.5, -150)
+Main.BackgroundColor3 = Color3.fromRGB(25,27,36)
+Main.BorderSizePixel = 0
+
+Instance.new("UICorner", Main).CornerRadius = UDim.new(0,12)
+
+local Title = Instance.new("TextLabel")
+Title.Parent = Main
+Title.Size = UDim2.new(1,-60,0,50)
+Title.Position = UDim2.fromOffset(15,0)
+Title.BackgroundTransparency = 1
+Title.Text = "DANZZY MENU"
+Title.TextColor3 = Color3.new(1,1,1)
+Title.TextSize = 20
+Title.Font = Enum.Font.GothamBold
+Title.TextXAlignment = Enum.TextXAlignment.Left
+
+local Close = Instance.new("TextButton")
+Close.Parent = Main
+Close.Size = UDim2.fromOffset(35,35)
+Close.Position = UDim2.new(1,-45,0,8)
+Close.Text = "X"
+Close.TextColor3 = Color3.new(1,1,1)
+Close.BackgroundColor3 = Color3.fromRGB(190,45,45)
+Close.BorderSizePixel = 0
+
+Instance.new("UICorner",Close).CornerRadius = UDim.new(0,7)
+
+local function MakeButton(text,x,y)
+    local B = Instance.new("TextButton")
+    B.Parent = Main
+    B.Size = UDim2.fromOffset(155,40)
+    B.Position = UDim2.fromOffset(x,y)
+    B.Text = text
+    B.TextColor3 = Color3.new(1,1,1)
+    B.TextSize = 12
+    B.Font = Enum.Font.GothamBold
+    B.BackgroundColor3 = Color3.fromRGB(50,54,68)
+    B.BorderSizePixel = 0
+
+    Instance.new("UICorner",B).CornerRadius = UDim.new(0,7)
+
+    return B
+end
+
+local AutoFarm = MakeButton("Auto Farm : OFF",15,65)
+local Fullbright = MakeButton("Fullbright : OFF",190,65)
+
+local Jump = MakeButton("Infinite Jump : OFF",150,115)
+local Speed = MakeButton("Speed 5000",190,115)
+
+local Rumah = MakeButton("Teleport : Rumah",15,165)
+local Brewog = MakeButton("Teleport : Brewog",190,165)
+
+local Maxgen = MakeButton("Teleport : Maxgen",15,215)
+local Coordinate = MakeButton("GET COORDINATE",190,215)
+
+Close.MouseButton1Click:Connect(function()
+    Gui:Destroy()
+end)
+
+Coordinate.MouseButton1Click:Connect(function()
+
+    local Character = Player.Character
+    local Root = Character and Character:FindFirstChild("HumanoidRootPart")
+
+    if Root then
+        local P = Root.Position
+
+        print("========== DANZZY COORDINATE ==========")
+        print("X =",P.X)
+        print("Y =",P.Y)
+        print("Z =",P.Z)
+        print("=======================================")
+    end
+
+end)
+
+print("[Danzzy] Menu berhasil dimuat")
